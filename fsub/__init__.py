@@ -10,8 +10,6 @@ from fsub.config import (
     BOT_TOKEN,
 )
 
-uvloop.install()
-
 
 class Bot(Client):
     def __init__(self):
@@ -86,6 +84,3 @@ class Bot(Client):
     async def stop(self, *args):
         await super().stop()
         self.LOGGER(__name__).info("Bot Berhenti!\n\n")
-
-
-Bot().run()

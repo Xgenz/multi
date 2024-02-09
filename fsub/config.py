@@ -15,7 +15,7 @@ DATABASE_NAME = os.getenv("DATABASE_NAME")
 RESTRICT = os.getenv("RESTRICT", True)
 
 BUTTON_TITLE = os.getenv("BUTTON_TITLE", "Join")
-BUTTON_ROW = int(os.getenv("BUTTON_ROW", 2))
+BUTTON_ROW = int(os.getenv("BUTTON_ROW", 3))
 
 FORCE_SUB_ = {}
 FSUB_TOTAL = 1
@@ -43,10 +43,6 @@ FORCE_MESSAGE = os.getenv(
 )
 
 ADMINS = [int(x) for x in (os.getenv("ADMINS").split())]
-    
-CUSTOM_CAPTION = os.getenv("CUSTOM_CAPTION", None)
-DISABLE_BUTTON = os.getenv("DISABLE_BUTTON", False)
-
 
 basicConfig(level=INFO, format="[%(levelname)s] - %(message)s")
 getLogger("hydrogram").setLevel(WARNING)

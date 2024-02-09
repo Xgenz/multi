@@ -6,8 +6,6 @@ from time import time
 from fsub import Bot
 from fsub.config import (
     ADMINS,
-    CUSTOM_CAPTION,
-    DISABLE_BUTTON,
     FORCE_MESSAGE,
     RESTRICT,
     START_MESSAGE,
@@ -93,45 +91,25 @@ async def start_command(client: Bot, message: Message):
         await temp_msg.delete()
 
         for msg in messages:
-            if bool(CUSTOM_CAPTION) & bool(msg.document):
-                caption = CUSTOM_CAPTION.format(
-                    previouscaption=msg.caption.html if msg.caption else "",
-                    filename=msg.document.file_name,
-                )
-
-            else:
-                caption = msg.caption.html if msg.caption else ""
-                reply_markup = msg.reply_markup if DISABLE_BUTTON else None
             try:
                 await msg.copy(
                     chat_id=message.from_user.id,
-                    caption=caption,
-                    protect_content=RESTRICT,
-                    reply_markup=reply_markup,
+                    protect_content=RESTRICT
                 )
             except FloodWait as e:
                 await asyncio.sleep(e.value)
                 await msg.copy(
                     chat_id=message.from_user.id,
-                    caption=caption,
-                    protect_content=RESTRICT,
-                    reply_markup=reply_markup,
+                    protect_content=RESTRICT
                 )
             except Exception:
                 pass
-        return
-        
+    
     else:
         buttons = await start_button(client)
         await message.reply_text(
             text=START_MESSAGE.format(
-                first=message.from_user.first_name,
-                last=message.from_user.last_name,
-                username=None 
-                if not message.from_user.username
-                else "@" + message.from_user.username,
-                mention=message.from_user.mention,
-                id=message.from_user.id,
+                mention=message.from_user.mention
             ),
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True,
@@ -145,13 +123,7 @@ async def not_joined(client: Bot, message: Message):
     buttons = await fsub_button(client, message)
     await message.reply(
         text=FORCE_MESSAGE.format(
-            first=message.from_user.first_name,
-            last=message.from_user.last_name,
-            username=f"@{message.from_user.username}"
-            if message.from_user.username
-            else None,
-            mention=message.from_user.mention,
-            id=message.from_user.id,
+            mention=message.from_user.mention
         ),
         reply_markup=InlineKeyboardMarkup(buttons),
         quote=True,
