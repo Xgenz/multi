@@ -83,6 +83,7 @@ async def start_command(client: Bot, message: Message):
         elif len(argument) == 2:
             try:
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
+                return
             except Exception:
                 return
         temp_msg = await message.reply("Sedang diproses...")

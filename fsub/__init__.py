@@ -83,7 +83,7 @@ class Bot(Client):
         )
 
 
-    async def stop(self, *args):
+    async def stop(self):
         await super().stop()
         self.LOGGER(__name__).info("Bot Berhenti!\n\n")
 
