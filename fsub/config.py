@@ -12,9 +12,9 @@ CHANNEL_DB = int(os.getenv("CHANNEL_DB"))
 DATABASE_URL = os.getenv("DATABASE_URL")
 DATABASE_NAME = os.getenv("DATABASE_NAME")
 
-RESTRICT = os.getenv("RESTRICT", True)
+RESTRICT = os.getenv("RESTRICT", False)
 
-BUTTON_TITLE = os.getenv("BUTTON_TITLE", "Join")
+BUTTON_TITLE = os.getenv("BUTTON_TITLE", "ᴊᴏɪɴ")
 BUTTON_ROW = int(os.getenv("BUTTON_ROW", 3))
 
 FORCE_SUB_ = {}
